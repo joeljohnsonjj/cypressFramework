@@ -37,7 +37,7 @@ unit-test-job:   # This job runs in the test stage.
   artifacts:
     when: always
     paths:
-      - mochawesome-report/**
+      - mochawesome-report/**/
       - cypress/screenshots/**/*.png
       - cypress/videos/**/*.mp4
     expire_in : 30 days
