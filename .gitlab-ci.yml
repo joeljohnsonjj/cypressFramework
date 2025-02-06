@@ -32,7 +32,15 @@ unit-test-job:   # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - npm ci # clean install from package-lock.json
-    - npm run runHeadless # run tests
+    - npm install mochawesome # HTML reporter
+    - npx cypress run -- reporter mochawesome # run the tests
+  artifacts:
+    when: always
+    paths:
+      - mochawesome-report/**
+      - cypress/screenshots/**/*.png
+      - cypress/videos/**/*.mp4
+    expire_in : 7 days
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
