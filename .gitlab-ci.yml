@@ -33,7 +33,7 @@ unit-test-job:   # This job runs in the test stage.
   script:
     - npm ci # clean install from package-lock.json
     - npm install mochawesome # HTML reporter
-    - npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report # run the tests
+    - npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report reportFilename=[name]-report # run the tests
   artifacts:
     when: always
     paths:
