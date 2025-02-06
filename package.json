@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mochawesomeReportrun": "NOW=$(date \"+%s\") npx cypress run --reporter mochawesome --timeout 20000 --reporter-options reportDir=mochawesome-report, reportFilename=test-${NOW}"
   },
   "keywords": [],
   "author": "",

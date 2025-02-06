@@ -33,7 +33,7 @@ unit-test-job:   # This job runs in the test stage.
   script:
     - npm ci # clean install from package-lock.json
     - npm install mochawesome # HTML reporter
-    - npx cypress run --reporter mochawesome --reporter-options reportDir=mochawesome-report, reportFilename=[name]-report # run the tests
+    - npm run mochawesomeReportrun # run the tests
   artifacts:
     when: always
     paths:
@@ -46,7 +46,6 @@ lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
   script:
     - echo "Linting code... This will take about 10 seconds."
-    - sleep 10
     - echo "No lint issues found."
 
 deploy-job:      # This job runs in the deploy stage.
