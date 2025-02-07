@@ -1,7 +1,11 @@
 import { ref1 } from '../../POMs[SwagLabs]/logins.cy';
+import { productListingPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
+import { loginPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 import * as allure from "allure-js-commons";
 
 const obj1 = new ref1();
+const obj2 = new productListingPageRepository();
+const obj3 = new loginPageRepository();
 
 describe('Product Listing Page', () => {
 
@@ -15,11 +19,10 @@ describe('Product Listing Page', () => {
         allure.epic("Sauce Labs");
         allure.feature("PLP");
         allure.story("Interface Check");
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]").should('exist');
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]").should('exist');
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/select[1]").should('exist');
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").should('exist');
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]").should('contain.text', 'Products');
+        cy.xpath(obj2.cartButton).should('exist');
+        cy.xpath(obj2.productSort).should('exist');
+        cy.xpath(obj2.burgerMenu).should('exist');
+        cy.xpath(obj2.productsTitle).should('contain.text', 'Products');
     });
 
     it('BasicAddtoCart', () => {
@@ -28,9 +31,9 @@ describe('Product Listing Page', () => {
         allure.epic("Sauce Labs");
         allure.feature("PLP");
         allure.story("Add to Cart");
-        cy.xpath("//button[@id='add-to-cart-sauce-labs-backpack']").click();
-        cy.xpath("//a[@class='shopping_cart_link']").click();
-        cy.xpath("//div[@class='inventory_item_name']").should('contain.text', 'Sauce Labs Backpack');
+        cy.xpath(obj2.addBackpack).click();
+        cy.xpath(obj2.cartButton).click();
+        cy.xpath(obj2.inventoryBackpack).should('contain.text', 'Sauce Labs Backpack');
         cy.screenshot();
     });
 
@@ -40,11 +43,11 @@ describe('Product Listing Page', () => {
         allure.epic("Sauce Labs");
         allure.feature("PLP");
         allure.story("Remove from Cart");
-        cy.xpath("//button[@id='add-to-cart-sauce-labs-backpack']").click();
-        cy.xpath("//a[@class='shopping_cart_link']").click();
-        cy.xpath("//div[@class='inventory_item_name']").should('contain.text', 'Sauce Labs Backpack');
-        cy.xpath("//button[@id='remove-sauce-labs-backpack']").click();
-        cy.xpath("//div[@class='inventory_item_name']").should('not.exist');
+        cy.xpath(obj2.addBackpack).click();
+        cy.xpath(obj2.cartButton).click();
+        cy.xpath(obj2.inventoryBackpack).should('contain.text', 'Sauce Labs Backpack');
+        cy.xpath(obj2.removeBackpack).click();
+        cy.xpath(obj2.inventoryBackpack).should('not.exist');
         cy.screenshot();
     });
 
@@ -55,13 +58,13 @@ describe('Product Listing Page', () => {
         allure.feature("PLP");
         allure.story("Add to Cart - 2 items");
 
-        cy.xpath("//button[@id='add-to-cart-sauce-labs-backpack']").click();
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/button[1]").click();
-        cy.xpath("//a[@class='shopping_cart_link']").click();
+        cy.xpath(obj2.addBackpack).click();
+        cy.xpath(obj2.addBikeLight).click();
+        cy.xpath(obj2.cartButton).click();
 
-        cy.xpath("//div[@class='inventory_item_name']").should('contain.text', 'Sauce Labs Backpack');
+        cy.xpath(obj2.inventoryBackpack).should('contain.text', 'Sauce Labs Backpack');
         cy.screenshot();
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[4]/div[2]/a[1]/div[1]").should('contain.text', 'Sauce Labs Bike Light');
+        cy.xpath(obj2.inventoryBikeLight).should('contain.text', 'Sauce Labs Bike Light');
         cy.screenshot();
     });
 
@@ -73,9 +76,9 @@ describe('Product Listing Page', () => {
         allure.story("Check Socials");
 
         cy.scrollTo('bottom');
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/footer[1]/ul[1]/li[3]/a[1]").click();
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/footer[1]/ul[1]/li[2]/a[1]").click();
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/footer[1]/ul[1]/li[1]/a[1]").click();
+        cy.xpath(obj2.linkedinRef).click();
+        cy.xpath(obj2.facebookRef).click();
+        cy.xpath(obj2.twitterRef).click();
     });
 
     it('Check Footer Text', () => {
@@ -86,7 +89,7 @@ describe('Product Listing Page', () => {
         allure.story("Check Footer Text");
 
         cy.scrollTo('bottom');
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/footer[1]/div[1]").should('contain.text', '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
+        cy.xpath(obj2.footerText).should('contain.text', '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
     });
 
     it('Sort - Price Low to High', () => {
@@ -96,18 +99,18 @@ describe('Product Listing Page', () => {
         allure.feature("PLP");
         allure.story("Sort - Price Low to High");
 
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/select[1]").select('lohi');
+        cy.xpath(obj2.productSort).select('lohi');
         cy.screenshot();
 
         let val1 : number, val2 : number;
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]")
+        cy.xpath(obj2.firstitemPrice)
             .invoke('text')
             .then((text) => {
             val1 = parseFloat(text.trim().replace('$', ''));
             console.log(val1);
         });
         
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]")
+        cy.xpath(obj2.seconditemPrice)
             .invoke('text')
             .then((text) => {
             val2 = parseFloat(text.trim().replace('$', ''));
@@ -123,18 +126,18 @@ describe('Product Listing Page', () => {
         allure.feature("PLP");
         allure.story("Sort - Price High to Low");
 
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/select[1]").select('hilo');
+        cy.xpath(obj2.productSort).select('hilo');
         cy.screenshot();
 
         let val1 : number, val2 : number;
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]")
+        cy.xpath(obj2.firstitemPrice)
             .invoke('text')
             .then((text) => {
             val1 = parseFloat(text.trim().replace('$', ''));
             console.log(val1);
         });
         
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]")
+        cy.xpath(obj2.seconditemPrice)
             .invoke('text')
             .then((text) => {
             val2 = parseFloat(text.trim().replace('$', ''));
@@ -150,25 +153,25 @@ describe('Product Listing Page', () => {
         allure.feature("PLP");
         allure.story("Sort - Name (A-Z)");
 
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/select[1]").select('az');
+        cy.xpath(obj2.productSort).select('az');
         cy.screenshot();
 
         let val1 : string, val2 : string;
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/div[1]")
+        cy.xpath(obj2.firstitemLabel)
             .invoke('text')
             .then((text) => {
             val1 = text.trim();
             console.log(val1);
         });
         
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]")
+        cy.xpath(obj2.seconditemLabel)
             .invoke('text')
             .then((text) => {
             val2 = text.trim();
             console.log(val2);
             expect(val1 < val2).to.be.true;
         });
-    });
+    })
 
     it('Sort - Name (Z-A)', () => {
         
@@ -177,18 +180,18 @@ describe('Product Listing Page', () => {
         allure.feature("PLP");
         allure.story("Sort - Name (Z-A)");
 
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/select[1]").select('za');
+        cy.xpath(obj2.productSort).select('za');
         cy.screenshot();
 
         let val1 : string, val2 : string;
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/div[1]")
+        cy.xpath(obj2.firstitemLabel)
             .invoke('text')
             .then((text) => {
             val1 = text.trim();
             console.log(val1);
         });
         
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]")
+        cy.xpath(obj2.seconditemLabel)
             .invoke('text')
             .then((text) => {
             val2 = text.trim();
@@ -204,10 +207,10 @@ describe('Product Listing Page', () => {
         allure.feature("PLP");
         allure.story("Logout");
 
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]").click();
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/nav[1]/a[3]").click();
+        cy.xpath(obj2.burgerMenu).click();
+        cy.xpath(obj2.LogoutButton).click();
         cy.screenshot();
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]").should('exist');
+        cy.xpath(obj3.loginLogo).should('exist');
     }); 
 
 });

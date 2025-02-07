@@ -1,12 +1,16 @@
 import { ref1 } from '../../POMs[SwagLabs]/logins.cy';
+import { loginPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
+import { productListingPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 import * as allure from "allure-js-commons";
 
 const obj1 = new ref1();
+const obj2 = new loginPageRepository();
+const obj3 = new productListingPageRepository();
 
 describe('Login Page', () => {
 
   beforeEach(() => {
-    cy.visit('https://www.saucedemo.com/');
+    cy.visit(obj2.mainUrl);
   });
 
   it('Valid Logins', () => { 
@@ -21,10 +25,10 @@ describe('Login Page', () => {
     allure.feature("Login Page");
     allure.story("Valid Logins");
 
-    cy.fixture('/SwagLabs/validTestLogins.json').then((users) => {
+    cy.fixture(obj2.validLoginsFixture).then((users) => {
       users.forEach((user) => {
         obj1.loginPage(user.username, user.password);
-        cy.xpath('/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]').should('exist');
+        cy.xpath(obj3.plpLogo).should('exist');
         cy.screenshot(); // saves to allure report as well
       });
     });
@@ -37,12 +41,12 @@ describe('Login Page', () => {
     allure.epic("Sauce Labs");
     allure.feature("Login Page");
     allure.story("Invalid Logins");
-    cy.fixture('/SwagLabs/invalidTestLogins.json').then((users) => {
+    cy.fixture(obj2.invalidLoginsFixture).then((users) => {
       users.forEach((user) => {
         obj1.loginPage(user.username, user.password);
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/h3[1]").should('contain.text', 'Epic sadface: Username and password do not match any user in this service');
+        cy.xpath(obj2.errorPop).should('contain.text', 'Epic sadface: Username and password do not match any user in this service');
         cy.screenshot();
-        cy.visit('https://www.saucedemo.com/');
+        cy.visit(obj2.mainUrl);
       });
     });
   });
@@ -53,10 +57,10 @@ describe('Login Page', () => {
     allure.epic("Sauce Labs");
     allure.feature("Login Page");
     allure.story("Erroneous Logins");
-    cy.xpath("//input[@id='user-name']").type('locked_out_user');
-    cy.xpath("//input[@id='password']").type('secret_sauce');
-    cy.xpath("//input[@id='login-button']").click();
-    cy.xpath("//h3[contains(text(),'Epic sadface: Sorry, this user has been locked out')]").should('exist');
+    cy.xpath(obj2.usernameField).type('locked_out_user');
+    cy.xpath(obj2.passwordField).type('secret_sauce');
+    cy.xpath(obj2.loginButton).click();
+    cy.xpath(obj2.lockedUserPopupPath).should('exist');
     cy.screenshot();
   });
 
@@ -66,11 +70,11 @@ describe('Login Page', () => {
     allure.epic("Sauce Labs");
     allure.feature("Login Page");
     allure.story("Empty Fields");
-    cy.fixture('/SwagLabs/emptyFields.json').then((users) => {
+    cy.fixture(obj2.emptyFieldsFixture).then((users) => {
       users.forEach((user) => {
         obj1.loginPage(user.username, user.password);
   
-        cy.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/h3[1]")
+        cy.xpath(obj2.errorPop)
           .invoke('text')
           .should((text) => {
             const expectedMessages = [
@@ -82,7 +86,7 @@ describe('Login Page', () => {
           });
         cy.screenshot();
   
-        cy.visit('https://www.saucedemo.com/');
+        cy.visit(obj2.mainUrl);
       });
     });
   });
@@ -93,11 +97,11 @@ describe('Login Page', () => {
     allure.epic("Sauce Labs");
     allure.feature("Login Page");
     allure.story("Placeholders");
-    cy.xpath("//input[@id='user-name']")
+    cy.xpath(obj2.usernameField)
       .should('have.attr', 'placeholder', 'Username');
-    cy.xpath("//input[@id='password']")
+    cy.xpath(obj2.passwordField)
       .should('have.attr', 'placeholder', 'Password');
-    cy.xpath("//input[@id='login-button']")
+    cy.xpath(obj2.loginButton)
       .should('have.attr', 'value', 'Login');
   });
 
