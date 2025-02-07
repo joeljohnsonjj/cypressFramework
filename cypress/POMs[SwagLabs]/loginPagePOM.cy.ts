@@ -1,4 +1,4 @@
-export class ref1 {
+export class logins {
 
     loginPage(username, password) {
         if (username != null && password != null) {

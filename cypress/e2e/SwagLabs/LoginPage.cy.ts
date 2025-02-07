@@ -1,11 +1,13 @@
-import { ref1 } from '../../POMs[SwagLabs]/logins.cy';
+import { logins } from '../../POMs[SwagLabs]/loginPagePOM.cy';
 import { loginPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 import { productListingPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 import * as allure from "allure-js-commons";
+import { allureReporting } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 
-const obj1 = new ref1();
+const obj1 = new logins();
 const obj2 = new loginPageRepository();
 const obj3 = new productListingPageRepository();
+const allu = new allureReporting();
 
 describe('Login Page', () => {
 
@@ -15,6 +17,7 @@ describe('Login Page', () => {
 
   it('Valid Logins', () => { 
 
+    // important allure annotations
     allure.description("This test attempts to log into the website.");
     allure.displayName("Valid Login");
     allure.owner("Joel Johnson");
@@ -35,12 +38,7 @@ describe('Login Page', () => {
   });
 
   it('Invalid Logins', () => {
-    allure.description("This test attempts to log into the website with Invalid Input");
-    allure.displayName("Invalid Logins");
-    allure.tags("Web Interface", "Authentication");
-    allure.epic("Sauce Labs");
-    allure.feature("Login Page");
-    allure.story("Invalid Logins");
+    allu.sendValues("This test attempts to log into the website with Invalid Input", "Invalid Logins", "Critical", "Sauce Labs", "Login Page", "Invalid Logins");
     cy.fixture(obj2.invalidLoginsFixture).then((users) => {
       users.forEach((user) => {
         obj1.loginPage(user.username, user.password);
@@ -52,11 +50,7 @@ describe('Login Page', () => {
   });
 
   it('Erroneous Logins - Locked User', () => {
-    allure.description("This test logs into website with a locked user");
-    allure.displayName("Locked User");
-    allure.epic("Sauce Labs");
-    allure.feature("Login Page");
-    allure.story("Erroneous Logins");
+    allu.sendValues("This test logs into website with a locked user", "Locked User", "Critical", "Sauce Labs", "Login Page", "Erroneous Logins");
     cy.xpath(obj2.usernameField).type('locked_out_user');
     cy.xpath(obj2.passwordField).type('secret_sauce');
     cy.xpath(obj2.loginButton).click();
@@ -65,11 +59,7 @@ describe('Login Page', () => {
   });
 
   it('Empty Fields', () => {
-    allure.description("This test logs into website with empty fields");
-    allure.displayName("Empty Fields");
-    allure.epic("Sauce Labs");
-    allure.feature("Login Page");
-    allure.story("Empty Fields");
+    allu.sendValues("This test logs into website with empty fields", "Empty Fields", "Normal", "Sauce Labs", "Login Page", "Empty Fields");
     cy.fixture(obj2.emptyFieldsFixture).then((users) => {
       users.forEach((user) => {
         obj1.loginPage(user.username, user.password);
@@ -92,11 +82,7 @@ describe('Login Page', () => {
   });
 
   it('Placeholders', () => {
-    allure.description("This test checks the placeholders of the login page");
-    allure.displayName("Placeholders");
-    allure.epic("Sauce Labs");
-    allure.feature("Login Page");
-    allure.story("Placeholders");
+    allu.sendValues("This test checks the placeholders of the login page", "Placeholders", "Minor", "Sauce Labs", "Login Page", "Placeholders");
     cy.xpath(obj2.usernameField)
       .should('have.attr', 'placeholder', 'Username');
     cy.xpath(obj2.passwordField)

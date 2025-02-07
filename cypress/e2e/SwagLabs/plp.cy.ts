@@ -1,11 +1,13 @@
-import { ref1 } from '../../POMs[SwagLabs]/logins.cy';
+import { logins } from '../../POMs[SwagLabs]/loginPagePOM.cy';
 import { productListingPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 import { loginPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 import * as allure from "allure-js-commons";
+import { allureReporting } from '../../POMs[SwagLabs]/ObjectRepository.cy';
 
-const obj1 = new ref1();
+const obj1 = new logins();
 const obj2 = new productListingPageRepository();
 const obj3 = new loginPageRepository();
+const allu = new allureReporting();
 
 describe('Product Listing Page', () => {
 
@@ -14,11 +16,7 @@ describe('Product Listing Page', () => {
     });
 
     it('CheckInterface', () => {
-        allure.description("This test checks the interface of the website.");
-        allure.displayName("Interface Check");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Interface Check");
+        allu.sendValues("This test checks the interface of the website", "Interface Check", "Normal", "Sauce Labs", "PLP", "Interface Check");
         cy.xpath(obj2.cartButton).should('exist');
         cy.xpath(obj2.productSort).should('exist');
         cy.xpath(obj2.burgerMenu).should('exist');
@@ -26,11 +24,7 @@ describe('Product Listing Page', () => {
     });
 
     it('BasicAddtoCart', () => {
-        allure.description("This test adds an item to the cart.");
-        allure.displayName("Add to Cart");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Add to Cart");
+        allu.sendValues("This test adds an item to the cart", "Add to Cart", "Critical", "Sauce Labs", "PLP", "Add to Cart");
         cy.xpath(obj2.addBackpack).click();
         cy.xpath(obj2.cartButton).click();
         cy.xpath(obj2.inventoryBackpack).should('contain.text', 'Sauce Labs Backpack');
@@ -38,11 +32,7 @@ describe('Product Listing Page', () => {
     });
 
     it('BasicRemovefromCart', () => {
-        allure.description("This test removes an item from the cart.");
-        allure.displayName("Remove from Cart");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Remove from Cart");
+        allu.sendValues("This test removes an item from the cart", "Remove from Cart", "Minor", "Sauce Labs", "PLP", "Remove from Cart");
         cy.xpath(obj2.addBackpack).click();
         cy.xpath(obj2.cartButton).click();
         cy.xpath(obj2.inventoryBackpack).should('contain.text', 'Sauce Labs Backpack');
@@ -52,12 +42,7 @@ describe('Product Listing Page', () => {
     });
 
     it('BasicAddtoCart2', () => {
-        allure.description("This test adds 2 items to the cart.");
-        allure.displayName("Add to Cart - 2 items");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Add to Cart - 2 items");
-
+        allu.sendValues("This test adds 2 items to the cart", "Add to Cart - 2 items", "Minor", "Sauce Labs", "PLP", "Add to Cart - 2 items");
         cy.xpath(obj2.addBackpack).click();
         cy.xpath(obj2.addBikeLight).click();
         cy.xpath(obj2.cartButton).click();
@@ -69,12 +54,7 @@ describe('Product Listing Page', () => {
     });
 
     it('Check Socials', () => {
-        
-        allure.description("Checks the social media links in the footer.");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Check Socials");
-
+        allu.sendValues("This test checks the social media links in the footer", "Social Media Links", "Normal", "Sauce Labs", "PLP", "Check Socials");
         cy.scrollTo('bottom');
         cy.xpath(obj2.linkedinRef).click();
         cy.xpath(obj2.facebookRef).click();
@@ -82,23 +62,13 @@ describe('Product Listing Page', () => {
     });
 
     it('Check Footer Text', () => {
-        
-        allure.description("Checks the footer text.");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Check Footer Text");
-
+        allu.sendValues("This test checks the footer text", "Footer Text", "Minor", "Sauce Labs", "PLP", "Check Footer Text");
         cy.scrollTo('bottom');
         cy.xpath(obj2.footerText).should('contain.text', '© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy');
     });
 
     it('Sort - Price Low to High', () => {
-        
-        allure.description("Sorts the products by price low to high.");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Sort - Price Low to High");
-
+        allu.sendValues("This test sorts the products by price low to high", "Sort - Price Low to High", "Normal", "Sauce Labs", "PLP", "Sort - Price Low to High");
         cy.xpath(obj2.productSort).select('lohi');
         cy.screenshot();
 
@@ -120,12 +90,7 @@ describe('Product Listing Page', () => {
     });
 
     it('Sort - Price High to Low', () => {
-        
-        allure.description("Sorts the products by price high to low.");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Sort - Price High to Low");
-
+        allu.sendValues("This test sorts the products by price high to low", "Sort - Price High to Low", "Normal", "Sauce Labs", "PLP", "Sort - Price High to Low");
         cy.xpath(obj2.productSort).select('hilo');
         cy.screenshot();
 
@@ -147,12 +112,7 @@ describe('Product Listing Page', () => {
     });
 
     it('Sort - Name (A-Z)', () => {
-        
-        allure.description("Sorts the products by name (A-Z).");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Sort - Name (A-Z)");
-
+        allu.sendValues("This test sorts the products by name A-Z", "Sort - Name (A-Z)", "Normal", "Sauce Labs", "PLP", "Sort - Name (A-Z)");
         cy.xpath(obj2.productSort).select('az');
         cy.screenshot();
 
@@ -174,12 +134,7 @@ describe('Product Listing Page', () => {
     })
 
     it('Sort - Name (Z-A)', () => {
-        
-        allure.description("Sorts the products by name (Z-A).");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Sort - Name (Z-A)");
-
+        allu.sendValues("This test sorts the products by name Z-A", "Sort - Name (Z-A)", "Normal", "Sauce Labs", "PLP", "Sort - Name (Z-A)");
         cy.xpath(obj2.productSort).select('za');
         cy.screenshot();
 
@@ -201,12 +156,7 @@ describe('Product Listing Page', () => {
     });
 
     it('Hamburger Menu - Log Out', () => {
-        
-        allure.description("Logs out of the website.");
-        allure.epic("Sauce Labs");
-        allure.feature("PLP");
-        allure.story("Logout");
-
+        allu.sendValues("This test logs out of the website", "Logout", "Critical", "Sauce Labs", "PLP", "Logout");
         cy.xpath(obj2.burgerMenu).click();
         cy.xpath(obj2.LogoutButton).click();
         cy.screenshot();

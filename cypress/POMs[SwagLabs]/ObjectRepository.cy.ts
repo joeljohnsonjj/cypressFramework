@@ -1,3 +1,5 @@
+import * as allure from "allure-js-commons";
+
 export class loginPageRepository{
 
     mainUrl = 'https://www.saucedemo.com/';
@@ -35,4 +37,15 @@ export class productListingPageRepository{
     firstitemLabel = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/div[1]";
     seconditemLabel = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]";
     LogoutButton = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/nav[1]/a[3]";
+}
+
+export class allureReporting{
+    sendValues(description, displayName, severity, epic, feature, story) {
+        allure.description(description);
+        allure.displayName(displayName);
+        allure.severity(severity);
+        allure.epic(epic);
+        allure.feature(feature);
+        allure.story(story);
+    }
 }
