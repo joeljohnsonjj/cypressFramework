@@ -1,7 +1,7 @@
-import { logins } from '../../POMs[SwagLabs]/loginPage.cy';
-import { productListingPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
-import { loginPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
-import { allureReporting } from '../../POMs[SwagLabs]/ObjectRepository.cy';
+import { logins } from '../Pages/loginPage.cy';
+import { productListingPageRepository } from '../Pages/ObjectRepository.cy';
+import { loginPageRepository } from '../Pages/ObjectRepository.cy';
+import { allureReporting } from '../Pages/ObjectRepository.cy';
 
 const obj1 = new logins();
 const obj2 = new productListingPageRepository();

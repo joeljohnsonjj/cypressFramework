@@ -1,8 +1,8 @@
-import { logins } from '../../POMs[SwagLabs]/loginPage.cy';
-import { loginPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
-import { productListingPageRepository } from '../../POMs[SwagLabs]/ObjectRepository.cy';
+import { logins } from '../Pages/loginPage.cy';
+import { loginPageRepository } from '../Pages/ObjectRepository.cy';
+import { productListingPageRepository } from '../Pages/ObjectRepository.cy';
 import * as allure from "allure-js-commons";
-import { allureReporting } from '../../POMs[SwagLabs]/ObjectRepository.cy';
+import { allureReporting } from '../Pages/ObjectRepository.cy';
 
 const obj1 = new logins();
 const obj2 = new loginPageRepository();
