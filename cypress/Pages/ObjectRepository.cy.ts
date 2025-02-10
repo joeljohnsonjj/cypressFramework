@@ -7,9 +7,9 @@ export class loginPageRepository{
     plpLogo = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]';
     errorPop = '/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/h3[1]';
     lockedUserPopupPath = "//h3[contains(text(),'Epic sadface: Sorry, this user has been locked out')]";
-    emptyFieldsFixture = '/SwagLabs/emptyFields.json';
-    validLoginsFixture = '/SwagLabs/validTestLogins.json';
-    invalidLoginsFixture = '/SwagLabs/invalidTestLogins.json';
+    emptyFieldsFixture = 'emptyFields.json';
+    validLoginsFixture = 'validTestLogins.json';
+    invalidLoginsFixture = 'invalidTestLogins.json';
     usernameField = "//input[@id='user-name']";
     passwordField = "//input[@id='password']";
     loginButton = "//input[@id='login-button']";
