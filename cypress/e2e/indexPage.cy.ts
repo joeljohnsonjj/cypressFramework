@@ -11,18 +11,18 @@ describe('Index Page', () => {
         cy.visit(index.indexPage);
     });
 
-    it('Valid test register', () => {
+    it('Valid Register', () => {
         allu.sendValues("Click on Register to open Test Registration Portal, Enter Values and click on register", "Register", "Critical", "ParaBank", "Index Page", "Register");
-        cy.xpath(index.registerLink).click();
-        indexPage.completeRegistrationWithRandomData();  
-        cy.xpath(index.registerButton).click();
-        cy.xpath(index.successMessage).should('contain.text', 'Your account was created successfully. You are now logged in.');
-        
+        indexPage.registrationFlow();
     });
 
-    it('Valid test login', () => {
+    it('Valid Login', () => {
         allu.sendValues("Enter correct username and password and click 'LOG IN'; should navigate to account dashboard", "Login", "Critical", "ParaBank", "Index Page", "Login");
-        
+        // Register a new user and get the generated credentials
+        const userData = indexPage.registrationFlow();
+        // Use the same credentials to login
+        indexPage.loginFlow(userData.username, userData.password);
+        cy.xpath(index.logoutButton).click();
     });
 
 });

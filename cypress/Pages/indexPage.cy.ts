@@ -4,11 +4,22 @@ const index = new indexPageRepository();
 
 export class indexPageFunctionalities {
 
+    loginFlow(username: string, password: string) {
+        cy.xpath(index.usernameField1).type(username);
+        cy.xpath(index.passwordField1).type(password);
+        cy.xpath(index.loginButton).click();
+        cy.xpath(index.welcomeMessage).should('contain.text', 'Welcome');
+        cy.log("Login successful");
+    }
+
     registrationFlow() {
         cy.xpath(index.registerLink).click();
-        this.completeRegistrationWithRandomData();
+        const userData = this.completeRegistrationWithRandomData();
         cy.xpath(index.registerButton).click();
         cy.xpath(index.successMessage).should('contain.text', 'Your account was created successfully. You are now logged in.');
+        cy.log("Registration successful");
+        cy.xpath(index.logoutButton).click();
+        return userData; // Return userData so credentials can be used in loginFlow
     }
 
     completeRegistrationWithRandomData() {

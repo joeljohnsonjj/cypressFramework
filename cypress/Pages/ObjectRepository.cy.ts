@@ -3,6 +3,9 @@ import * as allure from "allure-js-commons";
 export class indexPageRepository{
     indexPage = 'https://parabank.parasoft.com/parabank/index.htm'
     registerLink = "/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/p[2]/a[1]";
+    usernameField1 = "/html/body/div[1]/div[3]/div[1]/div/form/div[1]/input";
+    passwordField1 = "/html/body/div[1]/div[3]/div[1]/div/form/div[2]/input";
+    loginButton = "/html/body/div[1]/div[3]/div[1]/div/form/div[3]/input";
     
     // Registration form fields
     firstNameField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[1]/td[2]/input";
@@ -19,6 +22,8 @@ export class indexPageRepository{
     registerButton = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[13]/td[2]/input";
     
     successMessage = "/html/body/div[1]/div[3]/div[2]/p";
+    welcomeMessage = "/html/body/div[1]/div[3]/div[1]/p/b";
+    logoutButton = "/html/body/div[1]/div[3]/div[1]/ul/li[8]/a";
 }
 
 export class allureReporting{
