@@ -1,22 +1,34 @@
 import { RandomDataGenerator, UserRegistrationData } from '../utilities/randomDataGenerator';
+import { indexPageRepository } from '../Pages/ObjectRepository.cy';
+const index = new indexPageRepository();
 
 export class indexPageFunctionalities {
+
+    registrationFlow() {
+        cy.xpath(index.registerLink).click();
+        this.completeRegistrationWithRandomData();
+        cy.xpath(index.registerButton).click();
+        cy.xpath(index.successMessage).should('contain.text', 'Your account was created successfully. You are now logged in.');
+    }
 
     completeRegistrationWithRandomData() {
         // Generate random user data
         const userData: UserRegistrationData = RandomDataGenerator.generateCompleteUserData();
-        // Fill form fields with random data
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[1]/td[2]/input").type(userData.firstName);     // First Name
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[2]/td[2]/input").type(userData.lastName);      // Last Name
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[3]/td[2]/input").type(userData.address);       // Address
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[4]/td[2]/input").type(userData.city);          // City
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[5]/td[2]/input").type(userData.state);         // State
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[6]/td[2]/input").type(userData.zipCode);       // Zip Code
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[7]/td[2]/input").type(userData.phoneNumber);   // Phone Number
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[8]/td[2]/input").type(userData.ssn);           // SSN
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[10]/td[2]/input").type(userData.username);     // Username
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[11]/td[2]/input").type(userData.password);     // Password
-        cy.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[12]/td[2]/input").type(userData.confirmPassword); // Confirm Password
+        
+        // Fill form fields with random data using ObjectRepository selectors
+        cy.xpath(index.firstNameField).type(userData.firstName);           // First Name
+        cy.xpath(index.lastNameField).type(userData.lastName);             // Last Name
+        cy.xpath(index.addressField).type(userData.address);               // Address
+        cy.xpath(index.cityField).type(userData.city);                     // City
+        cy.xpath(index.stateField).type(userData.state);                   // State
+        cy.xpath(index.zipCodeField).type(userData.zipCode);               // Zip Code
+        cy.xpath(index.phoneNumberField).type(userData.phoneNumber);       // Phone Number
+        cy.xpath(index.ssnField).type(userData.ssn);                       // SSN
+        cy.xpath(index.usernameField).type(userData.username);             // Username
+        cy.xpath(index.passwordField).type(userData.password);             // Password
+        cy.xpath(index.confirmPasswordField).type(userData.confirmPassword); // Confirm Password
+        
+        return userData; // Return the generated data for potential use in test
     }
 
 }

@@ -1,42 +1,24 @@
 import * as allure from "allure-js-commons";
 
-export class loginPageRepository{
-
-    mainUrl = 'https://www.saucedemo.com/';
-    loginLogo = "/html[1]/body[1]/div[1]/div[1]/div[1]";
-    plpLogo = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]';
-    errorPop = '/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/form[1]/div[3]/h3[1]';
-    lockedUserPopupPath = "//h3[contains(text(),'Epic sadface: Sorry, this user has been locked out')]";
-    emptyFieldsFixture = 'emptyFields.json';
-    validLoginsFixture = 'validTestLogins.json';
-    invalidLoginsFixture = 'invalidTestLogins.json';
-    usernameField = "//input[@id='user-name']";
-    passwordField = "//input[@id='password']";
-    loginButton = "//input[@id='login-button']";
-
-}
-
-export class productListingPageRepository{
-
-    plpLogo = '/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]';
-    cartButton = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/a[1]";
-    productSort = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/span[1]/select[1]";
-    burgerMenu = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]";
-    productsTitle = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]";
-    addBackpack = "//button[@id='add-to-cart-sauce-labs-backpack']";
-    inventoryBackpack = "//div[@class='inventory_item_name']";
-    inventoryBikeLight = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[4]/div[2]/a[1]/div[1]";
-    removeBackpack = "//button[@id='remove-sauce-labs-backpack']";
-    addBikeLight = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/button[1]";
-    linkedinRef = "/html[1]/body[1]/div[1]/div[1]/footer[1]/ul[1]/li[3]/a[1]";
-    facebookRef = "/html[1]/body[1]/div[1]/div[1]/footer[1]/ul[1]/li[2]/a[1]";
-    twitterRef = "/html[1]/body[1]/div[1]/div[1]/footer[1]/ul[1]/li[1]/a[1]";
-    footerText = "/html[1]/body[1]/div[1]/div[1]/footer[1]/div[1]";
-    firstitemPrice = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]";
-    seconditemPrice = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]";
-    firstitemLabel = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/div[1]";
-    seconditemLabel = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]";
-    LogoutButton = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/nav[1]/a[3]";
+export class indexPageRepository{
+    indexPage = 'https://parabank.parasoft.com/parabank/index.htm'
+    registerLink = "/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/p[2]/a[1]";
+    
+    // Registration form fields
+    firstNameField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[1]/td[2]/input";
+    lastNameField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[2]/td[2]/input";
+    addressField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[3]/td[2]/input";
+    cityField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[4]/td[2]/input";
+    stateField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[5]/td[2]/input";
+    zipCodeField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[6]/td[2]/input";
+    phoneNumberField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[7]/td[2]/input";
+    ssnField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[8]/td[2]/input";
+    usernameField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[10]/td[2]/input";
+    passwordField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[11]/td[2]/input";
+    confirmPasswordField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[12]/td[2]/input";
+    registerButton = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[13]/td[2]/input";
+    
+    successMessage = "/html/body/div[1]/div[3]/div[2]/p";
 }
 
 export class allureReporting{
