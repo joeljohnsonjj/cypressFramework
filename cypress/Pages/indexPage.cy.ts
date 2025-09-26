@@ -5,11 +5,13 @@ const index = new indexPageRepository();
 export class indexPageFunctionalities {
 
     loginFlow(username: string, password: string) {
-        cy.xpath(index.usernameField1).type(username);
-        cy.xpath(index.passwordField1).type(password);
+        if (username !== null) {
+            cy.xpath(index.usernameField1).type(username);
+        }
+        if (password !== null) {
+            cy.xpath(index.passwordField1).type(password);
+        }
         cy.xpath(index.loginButton).click();
-        cy.xpath(index.welcomeMessage).should('contain.text', 'Welcome');
-        cy.log("Login successful");
     }
 
     registrationFlow() {

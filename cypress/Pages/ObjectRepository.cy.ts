@@ -24,6 +24,7 @@ export class indexPageRepository{
     successMessage = "/html/body/div[1]/div[3]/div[2]/p";
     welcomeMessage = "/html/body/div[1]/div[3]/div[1]/p/b";
     logoutButton = "/html/body/div[1]/div[3]/div[1]/ul/li[8]/a";
+    errorMessage = "/html/body/div[1]/div[3]/div[2]/p";
 }
 
 export class allureReporting{

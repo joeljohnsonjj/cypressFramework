@@ -22,7 +22,28 @@ describe('Index Page', () => {
         const userData = indexPage.registrationFlow();
         // Use the same credentials to login
         indexPage.loginFlow(userData.username, userData.password);
-        cy.xpath(index.logoutButton).click();
+        cy.xpath(index.welcomeMessage).should('contain.text', 'Welcome');
+        cy.log("Login successful");
+    });
+
+    it('Invalid Login', () => {
+        allu.sendValues(" Enter incorrect username or password and click 'LOG IN'; should display error message.", "Login", "Critical", "ParaBank", "Index Page", "Login");
+        cy.fixture('invalidLogins').then((invalidLogins) => {
+            const invalidUser = invalidLogins[0]; // Use first invalid login
+            indexPage.loginFlow(invalidUser.username, invalidUser.password);
+            cy.xpath(index.errorMessage).should('contain.text', 'The username and password could not be verified.');
+        });
+    });
+
+    it('Empty Fields', () => {
+        allu.sendValues("Leave username and password blank, click 'LOG IN'; should prompt user to fill mandatory fields.", "Login", "Critical", "ParaBank", "Index Page", "Login");
+        cy.fixture('emptyFields').then((emptyFields) => {
+            emptyFields.forEach((testCase, caseIndex) => {
+                cy.log(`Testing case ${caseIndex + 1}: username=${testCase.username || 'empty'}, password=${testCase.password || 'empty'}`);
+                indexPage.loginFlow(testCase.username, testCase.password);
+                cy.xpath(index.errorMessage).should('contain.text', 'Please enter a username and password.');
+            });
+        });
     });
 
 });
