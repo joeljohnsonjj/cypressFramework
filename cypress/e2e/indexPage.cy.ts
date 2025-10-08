@@ -46,4 +46,32 @@ describe('Index Page', () => {
         });
     });
 
+    it('Forgot Login Info', () => {
+        allu.sendValues("Click the 'Forgot login info?' link; should redirect to recovery/reset procedure.", "Forgot Login Info", "Critical", "ParaBank", "Index Page", "Forgot Login Info");
+        cy.xpath(index.forgotLoginInfoLink).click();
+        cy.xpath(index.custLookupTitle).should('contain.text', 'Customer Lookup');
+    });
+
+    it('Register Link', () => {
+        allu.sendValues("Click on 'Register'; should go to account registration page.", "Register Link", "Critical", "ParaBank", "Index Page", "Register Link");
+        cy.xpath(index.registerLink).click();
+        cy.xpath(index.registerPageTitle).should('contain.text', 'Signing up is easy!');
+    });
+
+    it.only('Latest news links', () => {
+        allu.sendValues("Verify all links within latest news section navigates to respective page", "Latest news links", "Critical", "ParaBank", "Index Page", "Latest news links");
+        cy.xpath(index.latestNewsLink1).click();
+        cy.xpath(index.newsPageTitle).should('contain.text', 'ParaBank News');
+        cy.go('back');
+        cy.xpath(index.latestNewsLink2).click();
+        cy.xpath(index.newsPageTitle).should('contain.text', 'ParaBank News');
+        cy.go('back');
+        cy.xpath(index.latestNewsLink3).click();
+        cy.xpath(index.newsPageTitle).should('contain.text', 'ParaBank News');
+        cy.go('back');
+        cy.xpath(index.latestNewsReadMoreLink).click();
+        cy.xpath(index.newsPageTitle).should('contain.text', 'ParaBank News');
+        cy.go('back');
+    });
+
 });

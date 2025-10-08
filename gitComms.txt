@@ -1,6 +1,6 @@
 git init
 
-git remote add origin https://gitlab.com/joeljohnsong10x/swaglabs-cypress.git
+git remote add origin https://github.com/joeljohnsonjj/cypressFramework.git
 git branch -M main
 git push -uf origin main
 

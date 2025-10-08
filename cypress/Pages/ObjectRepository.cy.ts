@@ -6,6 +6,11 @@ export class indexPageRepository{
     usernameField1 = "/html/body/div[1]/div[3]/div[1]/div/form/div[1]/input";
     passwordField1 = "/html/body/div[1]/div[3]/div[1]/div/form/div[2]/input";
     loginButton = "/html/body/div[1]/div[3]/div[1]/div/form/div[3]/input";
+    forgotLoginInfoLink = "/html/body/div[1]/div[3]/div[1]/div/p[1]/a";
+    latestNewsLink1 = "/html/body/div[1]/div[3]/div[2]/ul[3]/li[2]/a";
+    latestNewsLink2 = "/html/body/div[1]/div[3]/div[2]/ul[3]/li[3]/a";
+    latestNewsLink3 = "/html/body/div[1]/div[3]/div[2]/ul[3]/li[4]/a";
+    latestNewsReadMoreLink = "/html/body/div[1]/div[3]/div[2]/p[2]/a";
     
     // Registration form fields
     firstNameField = "/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[1]/td[2]/input";
@@ -25,6 +30,9 @@ export class indexPageRepository{
     welcomeMessage = "/html/body/div[1]/div[3]/div[1]/p/b";
     logoutButton = "/html/body/div[1]/div[3]/div[1]/ul/li[8]/a";
     errorMessage = "/html/body/div[1]/div[3]/div[2]/p";
+    custLookupTitle = "/html/body/div[1]/div[3]/div[2]/h1";
+    registerPageTitle = "/html/body/div[1]/div[3]/div[2]/h1";
+    newsPageTitle = "/html/body/div[1]/div[3]/div[2]/h1";
 }
 
 export class allureReporting{
