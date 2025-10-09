@@ -1,5 +1,5 @@
 import { RandomDataGenerator, UserRegistrationData } from '../utilities/randomDataGenerator';
-import { indexPageRepository } from '../Pages/ObjectRepository.cy';
+import { indexPageRepository } from './objectRepository.cy';
 const index = new indexPageRepository();
 
 export class indexPageFunctionalities {
@@ -18,9 +18,13 @@ export class indexPageFunctionalities {
         cy.xpath(index.registerLink).click();
         const userData = this.completeRegistrationWithRandomData();
         cy.xpath(index.registerButton).click();
+        cy.log("username: " + userData.username);
+        cy.log("password: " + userData.password);
         cy.xpath(index.successMessage).should('contain.text', 'Your account was created successfully. You are now logged in.');
         cy.log("Registration successful");
+        cy.wait(3000);
         cy.xpath(index.logoutButton).click();
+        cy.wait(3000);
         return userData; // Return userData so credentials can be used in loginFlow
     }
 

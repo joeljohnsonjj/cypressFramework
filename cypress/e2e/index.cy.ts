@@ -1,6 +1,6 @@
-import { allureReporting } from '../Pages/ObjectRepository.cy';
-import { indexPageFunctionalities } from '../Pages/indexPage.cy';
-import { indexPageRepository } from '../Pages/ObjectRepository.cy';
+import { allureReporting } from '../pages/objectRepository.cy';
+import { indexPageFunctionalities } from '../pages/indexPage.cy';
+import { indexPageRepository } from '../pages/objectRepository.cy';
 const allu = new allureReporting();
 const indexPage = new indexPageFunctionalities();
 const index = new indexPageRepository();
@@ -27,7 +27,7 @@ describe('Index Page', () => {
     });
 
     it('Invalid Login', () => {
-        allu.sendValues(" Enter incorrect username or password and click 'LOG IN'; should display error message.", "Login", "Critical", "ParaBank", "Index Page", "Login");
+        allu.sendValues("Enter incorrect username or password and click 'LOG IN'; should display error message.", "Login", "Critical", "ParaBank", "Index Page", "Login");
         cy.fixture('invalidLogins').then((invalidLogins) => {
             const invalidUser = invalidLogins[0]; // Use first invalid login
             indexPage.loginFlow(invalidUser.username, invalidUser.password);
@@ -58,7 +58,7 @@ describe('Index Page', () => {
         cy.xpath(index.registerPageTitle).should('contain.text', 'Signing up is easy!');
     });
 
-    it.only('Latest news links', () => {
+    it('Latest news links', () => {
         allu.sendValues("Verify all links within latest news section navigates to respective page", "Latest news links", "Critical", "ParaBank", "Index Page", "Latest news links");
         cy.xpath(index.latestNewsLink1).click();
         cy.xpath(index.newsPageTitle).should('contain.text', 'ParaBank News');

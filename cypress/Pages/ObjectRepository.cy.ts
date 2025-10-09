@@ -35,6 +35,17 @@ export class indexPageRepository{
     newsPageTitle = "/html/body/div[1]/div[3]/div[2]/h1";
 }
 
+export class openaccountPageRepository{
+    openNewAccountLink = "/html/body/div[1]/div[3]/div[1]/ul/li[1]/a"
+    accountOverviewLink = "/html/body/div[1]/div[3]/div[1]/ul/li[2]/a"
+    checkingAccountDropdown = "/html/body/div[1]/div[3]/div[2]/div/div[1]/form/select[1]";
+    fromAccountDropdown = "/html/body/div[1]/div[3]/div[2]/div/div[1]/form/select[2]";
+    openNewAccountButton = "/html/body/div[1]/div[3]/div[2]/div/div[1]/form/div/input";
+    accountOpenedTitle = "/html/body/div[1]/div[3]/div[2]/div/div[2]/h1";
+    newAccNumberLink = "/html/body/div[1]/div[3]/div[2]/div/div[2]/p[2]/a"
+    accountOverviewTable = "/html/body/div[1]/div[3]/div[2]/div/div[1]/table"
+}
+
 export class allureReporting{
     sendValues(description, displayName, severity, epic, feature, story) {
         allure.description(description);
