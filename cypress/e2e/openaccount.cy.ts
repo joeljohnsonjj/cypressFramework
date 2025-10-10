@@ -16,5 +16,10 @@ describe('Open Account Page', () => {
         allu.sendValues("Choose 'Checking' from the dropdown list and click on 'Open New Account', and verify in Accounts Overview", "Open New Account", "Critical", "ParaBank", "Open Account Page", "Open New Account");
         openAccountPage.createCheckingAccount(0);
     });
+
+    it.only('Create Savings Account', () => {
+        allu.sendValues("Choose 'Savings' from the dropdown list and click on 'Open New Account', and verify in Accounts Overview", "Open New Account", "Critical", "ParaBank", "Open Account Page", "Open New Account");
+        openAccountPage.createSavingsAccount(0);
+    });
     
 });
