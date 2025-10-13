@@ -46,6 +46,10 @@ export class openaccountPageRepository{
     accountOverviewTable = "/html/body/div[1]/div[3]/div[2]/div/div[1]/table"
 }
 
+export class accountoverviewPageRepository{
+    accountNumberElement = '/html/body/div[1]/div[3]/div[2]/div/div[1]/table/tbody/tr[1]/td[2]';
+}
+
 export class allureReporting{
     sendValues(description, displayName, severity, epic, feature, story) {
         allure.description(description);
