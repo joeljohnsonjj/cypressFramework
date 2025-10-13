@@ -21,6 +21,9 @@ export class openaccountPageFunctionalities {
     }
 
     createCheckingAccount(val : number) {
+        if(val == 1) {
+            this.createCheckingAccount(0);
+        }
         cy.xpath(openaccount.openNewAccountLink).click();
         cy.xpath(openaccount.checkingAccountDropdown).select('CHECKING');
         cy.xpath(openaccount.fromAccountDropdown).select(val);
@@ -45,6 +48,9 @@ export class openaccountPageFunctionalities {
     }
 
     createSavingsAccount(val : number) {
+      if(val == 1) {
+        this.createSavingsAccount(0);
+      }
       cy.xpath(openaccount.openNewAccountLink).click();
       cy.xpath(openaccount.checkingAccountDropdown).select('SAVINGS');
       cy.xpath(openaccount.fromAccountDropdown).select(val);
