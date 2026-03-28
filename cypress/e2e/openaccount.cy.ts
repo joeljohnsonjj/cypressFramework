@@ -1,5 +1,5 @@
-import { allureReporting } from '../pages/objectRepository.cy';
-import { openaccountPageFunctionalities } from '../pages/openaccountPage.cy';
+import { allureReporting } from '../Pages/ObjectRepository.cy';
+import { openaccountPageFunctionalities } from '../Pages/openaccountPage.cy';
 import { UserRegistrationData } from '../utilities/randomDataGenerator';
 
 const allu = new allureReporting();

@@ -1,6 +1,6 @@
-import { allureReporting } from '../pages/objectRepository.cy';
-import { indexPageFunctionalities } from '../pages/indexPage.cy';
-import { indexPageRepository } from '../pages/objectRepository.cy';
+import { allureReporting } from '../Pages/ObjectRepository.cy';
+import { indexPageFunctionalities } from '../Pages/indexPage.cy';
+import { indexPageRepository } from '../Pages/ObjectRepository.cy';
 const allu = new allureReporting();
 const indexPage = new indexPageFunctionalities();
 const index = new indexPageRepository();
