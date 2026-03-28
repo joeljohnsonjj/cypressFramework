@@ -1,5 +1,5 @@
-import { openaccountPageRepository } from './objectRepository.cy';
-import { accountoverviewPageRepository } from './objectRepository.cy';
+import { openaccountPageRepository } from './ObjectRepository.cy';
+import { accountoverviewPageRepository } from './ObjectRepository.cy';
 
 const openaccount = new openaccountPageRepository();
 const accountoverview = new accountoverviewPageRepository();

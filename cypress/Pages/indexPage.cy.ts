@@ -1,5 +1,5 @@
 import { RandomDataGenerator, UserRegistrationData } from '../utilities/randomDataGenerator';
-import { indexPageRepository } from './objectRepository.cy';
+import { indexPageRepository } from './ObjectRepository.cy';
 const index = new indexPageRepository();
 
 export class indexPageFunctionalities {

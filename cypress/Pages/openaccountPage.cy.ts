@@ -1,6 +1,6 @@
 import { indexPageFunctionalities } from './indexPage.cy';
-import { indexPageRepository } from './objectRepository.cy';
-import { openaccountPageRepository } from './objectRepository.cy';
+import { indexPageRepository } from './ObjectRepository.cy';
+import { openaccountPageRepository } from './ObjectRepository.cy';
 import { UserRegistrationData } from '../utilities/randomDataGenerator';
 
 const indexPage = new indexPageFunctionalities();
